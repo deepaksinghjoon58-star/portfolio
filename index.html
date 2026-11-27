@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Deepak Singh Joon • Global Executive MBA &amp; B2B Growth</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #040911;
+      --card-bg: #0b1626;
+      --border-glow: rgba(0, 210, 255, 0.25);
+      --cyan: #00d2ff;
+      --green-bright: #00ff88;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--bg-dark);
+      background-image:
+        radial-gradient(circle at 50% 15%, rgba(0, 210, 255, 0.16) 0%, transparent 45%),
+        radial-gradient(circle at 80% 80%, rgba(0, 255, 136, 0.08) 0%, transparent 40%);
+      color: var(--text);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      min-height: 100vh;
+      padding: 12px 14px 80px;
+    }
+
+    .top-nav {
+      position: sticky;
+      top: 10px;
+      z-index: 1000;
+      max-width: 450px;
+      margin: 0 auto 14px;
+      background: rgba(8, 17, 30, 0.94);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(0, 210, 255, 0.3);
+      border-radius: 999px;
+      padding: 8px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
+    }
+
+    .nav-left { display: flex; align-items: center; gap: 10px; overflow: hidden; }
+    .node-logo {
+      width: 32px; height: 32px; min-width: 32px; border-radius: 50%;
+      background: linear-gradient(135deg, #0ea5e9, #2563eb);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 13px; color: #fff;
+    }
+    .pipeline-status {
+      font-family: 'Fira Code', monospace; font-size: 11.5px; color: #cbd5e1;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .pipeline-status .highlight { color: var(--cyan); font-weight: 600; }
+    .lang-toggle {
+      background: rgba(0, 210, 255, 0.16);
+      border: 1px solid rgba(0, 210, 255, 0.4);
+      color: #fff; font-family: 'Fira Code', monospace; font-size: 11.5px; font-weight: 600;
+      padding: 6px 12px; border-radius: 999px; cursor: pointer; margin-left: 8px;
+    }
+    .lang-toggle:active { background: var(--cyan); color: #040911; }
+
+    .pipeline-hero {
+      position: sticky;
+      top: 68px;
+      z-index: 900;
+      max-width: 450px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 14px 0 18px;
+      background: radial-gradient(ellipse at center, rgba(4,9,17,0.95) 55%, transparent 100%);
+    }
+
+    .data-line {
+      position: absolute; top: 46%; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--cyan), var(--green-bright), transparent);
+      z-index: 1;
+    }
+
+    .data-dot-anim {
+      position: absolute; top: 46%; left: 10%; width: 45px; height: 3px;
+      background: linear-gradient(90deg, transparent, #fff, var(--green-bright));
+      transform: translateY(-50%);
+      animation: flowMove 2.8s linear infinite;
+      z-index: 2;
+    }
+
+    @keyframes flowMove {
+      0% { left: 5%; opacity: 0; }
+      20% { opacity: 1; }
+      80% { opacity: 1; }
+      100% { left: 85%; opacity: 0; }
+    }
+
+    .source-box {
+      position: relative; z-index: 3; display: inline-block;
+      background: rgba(9, 20, 36, 0.98); border: 1px solid rgba(0, 210, 255, 0.5);
+      border-radius: 14px; padding: 9px 20px;
+      box-shadow: 0 0 25px rgba(0, 210, 255, 0.25);
+    }
+    .source-box .meta { font-family: 'Fira Code', monospace; font-size: 10px; color: var(--cyan); }
+    .source-box .name { font-size: 14.5px; font-weight: 700; color: #fff; margin: 2px 0; }
+    .source-box .sub { font-size: 10px; color: var(--muted); }
+
+    .container { max-width: 450px; margin: 8px auto 0; }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-glow);
+      border-radius: 20px;
+      margin-bottom: 22px;
+      box-shadow: 0 14px 35px rgba(0, 0, 0, 0.65);
+    }
+
+    .card-top {
+      position: sticky;
+      top: 152px;
+      z-index: 800;
+      background: #0d1a2d;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 13px 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      font-family: 'Fira Code', monospace; font-size: 12px;
+    }
+
+    .card-body { padding: 18px 20px 22px; }
+
+    .file-label { color: #cbd5e1; }
+    .stage-label { color: #64748b; font-size: 11px; }
+    .status-live { color: var(--green-bright); display: flex; align-items: center; gap: 6px; font-size: 11.5px; }
+    .pulse-dot {
+      width: 8px; height: 8px; border-radius: 50%; background: var(--green-bright);
+      box-shadow: 0 0 8px var(--green-bright); animation: blink 1.6s infinite;
+    }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+
+    .profile-row { display: flex; gap: 16px; align-items: center; margin-bottom: 16px; }
+    .avatar-rect {
+      width: 102px; height: 126px; min-width: 102px; border-radius: 14px;
+      object-fit: cover; object-position: center 15%;
+      border: 1px solid rgba(0, 210, 255, 0.35); background: #09111e;
+    }
+    .profile-details h1 { font-size: 27px; line-height: 1.12; font-weight: 800; margin-bottom: 10px; }
+    .pill-blue {
+      display: inline-block; background: rgba(14, 165, 233, 0.16);
+      border: 1px solid rgba(56, 189, 248, 0.35); color: #38bdf8;
+      font-size: 11.5px; font-weight: 600; padding: 5px 11px; border-radius: 8px; margin-bottom: 6px;
+    }
+    .pill-teal {
+      display: inline-block; background: rgba(16, 185, 129, 0.14);
+      border: 1px solid rgba(52, 211, 153, 0.35); color: #34d399;
+      font-size: 11.5px; font-weight: 600; padding: 5px 11px; border-radius: 8px; line-height: 1.35;
+    }
+    .loc-line { font-size: 12px; color: var(--muted); margin-top: 8px; }
+
+    .edu-badges {
+      display: flex; align-items: center; gap: 8px; margin: 10px 0 16px; padding: 8px 12px;
+      background: rgba(255, 255, 255, 0.03); border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.06); font-size: 12px; color: #cbd5e1;
+    }
+    .badge-circle {
+      width: 24px; height: 24px; min-width: 24px; border-radius: 50%;
+      background: rgba(0, 210, 255, 0.18); border: 1px solid rgba(0, 210, 255, 0.4);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px; font-weight: 700; color: var(--cyan);
+    }
+
+    .bio-p { font-size: 14px; line-height: 1.62; color: #e2e8f0; margin-bottom: 14px; }
+    .hint-p { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; line-height: 1.5; }
+
+    .action-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+    .action-tile {
+      background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 14px; padding: 12px 4px; text-align: center; text-decoration: none;
+      color: #e2e8f0; font-size: 11.5px; font-weight: 500;
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+    }
+    .action-tile:active { border-color: var(--cyan); background: rgba(0, 210, 255, 0.12); }
+    .action-tile svg { width: 20px; height: 20px; stroke: #cbd5e1; }
+
+    .exp-block {
+      background: rgba(255, 255, 255, 0.025); border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 14px; padding: 15px; margin-bottom: 12px;
+    }
+    .exp-block:last-child { margin-bottom: 0; }
+    .exp-role { font-size: 15.5px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+    .exp-meta { font-family: 'Fira Code', monospace; font-size: 11px; color: var(--cyan); margin-bottom: 8px; }
+    .exp-desc { font-size: 13px; color: #cbd5e1; line-height: 1.55; }
+
+    .skill-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip {
+      font-family: 'Fira Code', monospace; font-size: 11.5px;
+      background: rgba(0, 210, 255, 0.09); border: 1px solid rgba(0, 210, 255, 0.25);
+      color: #e0f2fe; padding: 6px 11px; border-radius: 8px;
+    }
+    .footer-note {
+      text-align: center; font-family: 'Fira Code', monospace;
+      font-size: 11px; color: #64748b; margin-top: 24px;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="top-nav">
+    <div class="nav-left">
+      <div class="node-logo">DJ</div>
+      <div class="pipeline-status">
+        <span id="procLabel">processing</span> &rarr; <span class="highlight" id="stageName">About Me</span> &bull; <span id="stageStep">stage 1 of 4</span>
+      </div>
+    </div>
+    <button type="button" class="lang-toggle" id="langBtn" onclick="switchLanguage()">ES 🇪🇸</button>
+  </nav>
+
+  <div class="pipeline-hero">
+    <div class="data-line"></div>
+    <div class="data-dot-anim"></div>
+    <div class="source-box">
+      <div class="meta">00 &bull; source</div>
+      <div class="name">Deepak Singh Joon</div>
+      <div class="sub" data-en="Global Executive MBA &bull; B2B &amp; Finance" data-es="Global Executive MBA &bull; B2B y Finanzas">Global Executive MBA &bull; B2B &amp; Finance</div>
+    </div>
+  </div>
+
+  <main class="container">
+
+    <section class="card pipeline-stage" data-stage-en="About Me" data-stage-es="Sobre mí" data-step="1">
+      <div class="card-top">
+        <span class="file-label">deepak_joon.py</span>
+        <span class="stage-label">source</span>
+        <span class="status-live"><span class="pulse-dot"></span> <span data-en="available" data-es="disponible">available</span></span>
+      </div>
+      <div class="card-body">
+        <div class="profile-row">
+          <img src="profile.jpg" alt="Deepak Singh Joon" class="avatar-rect" />
+          <div class="profile-details">
+            <h1>Deepak<br>Singh Joon</h1>
+            <div class="pill-blue" data-en="B2B Growth &amp; Finance" data-es="Crecimiento B2B y Finanzas">B2B Growth &amp; Finance</div><br>
+            <div class="pill-teal" data-en="Global Executive MBA &bull; ENAE Spain" data-es="Global Executive MBA &bull; ENAE España">Global Executive MBA &bull; ENAE Spain</div>
+            <div class="loc-line" data-en="Murcia, Spain (Relocating) &bull; Open to Work" data-es="Murcia, España (Traslado) &bull; Disponible">Murcia, Spain (Relocating) &bull; Open to Work</div>
+          </div>
+        </div>
+
+        <div class="edu-badges">
+          <span class="badge-circle">EN</span>
+          <span class="badge-circle">CC</span>
+          <span data-en="ENAE Business School (40% Scholarship) &bull; CCSU" data-es="ENAE Business School (Beca 40%) &bull; CCSU">ENAE Business School (40% Scholarship) &bull; CCSU</span>
+        </div>
+
+        <p class="bio-p"
+           data-en="Specialized in driving B2B revenue growth, key account management, and corporate financial discipline with 8+ years of cross-functional experience."
+           data-es="Especializado en el crecimiento de ingresos B2B, gestión de cuentas clave y disciplina financiera corporativa con más de 8 años de experiencia.">
+          Specialized in driving B2B revenue growth, key account management, and corporate financial discipline with 8+ years of cross-functional experience.
+        </p>
+
+        <p class="bio-p"
+           data-en="Admitted to the Global Executive MBA (60 ECTS, Dual Degree) at ENAE Business School in Murcia, Spain, combining corporate strategy, M&amp;A modeling, and digital analytics."
+           data-es="Admitido en el Global Executive MBA (60 ECTS, Doble Titulación) en ENAE Business School en Murcia, España, combinando estrategia corporativa, M&amp;A y analítica digital.">
+          Admitted to the Global Executive MBA (60 ECTS, Dual Degree) at ENAE Business School in Murcia, Spain, combining corporate strategy, M&amp;A modeling, and digital analytics.
+        </p>
+
+        <p class="hint-p"
+           data-en="This portfolio works like a data pipeline: scroll down to see how experience and credentials flow through each stage."
+           data-es="Este portafolio funciona como una pipeline: baja y verás cómo viaja mi experiencia por cada etapa de mi carrera.">
+          This portfolio works like a data pipeline: scroll down to see how experience and credentials flow through each stage.
+        </p>
+
+        <div class="action-grid">
+          <a href="Deepak_Singh_Joon_CV.pdf" download class="action-tile">
+            <svg fill="none" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            <span>CV</span>
+          </a>
+          <a href="https://www.linkedin.com/in/deepak-singh-joon-41118544a" target="_blank" class="action-tile">
+            <svg fill="none" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+            <span>LinkedIn</span>
+          </a>
+          <a href="https://github.com/deepaksinghjoon58-star" target="_blank" class="action-tile">
+            <svg fill="none" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+            <span>GitHub</span>
+          </a>
+          <a href="mailto:deepaksinghjoon58@gmail.com" class="action-tile">
+            <svg fill="none" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            <span data-en="Email" data-es="Correo">Email</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="card pipeline-stage" data-stage-en="Experience" data-stage-es="Experiencia" data-step="2">
+      <div class="card-top">
+        <span class="file-label">02_experience.py</span>
+        <span class="stage-label">transform</span>
+        <span class="status-live"><span class="pulse-dot"></span> 8+ yrs</span>
+      </div>
+      <div class="card-body">
+        <div class="exp-block">
+          <div class="exp-role" data-en="Business Development Executive" data-es="Ejecutivo de Desarrollo de Negocio B2B">Business Development Executive</div>
+          <div class="exp-meta">Mar 2021 – Jun 2025 &bull; Suchai Innovation Pvt. Ltd.</div>
+          <div class="exp-desc"
+               data-en="Spearheaded B2B client acquisition pipelines, consultative C-level negotiations, and Key Account Management, consistently surpassing quarterly revenue targets."
+               data-es="Lideré la captación de clientes B2B, negociaciones consultivas con directivos y gestión de cuentas clave, superando los objetivos trimestrales de ingresos.">
+            Spearheaded B2B client acquisition pipelines, consultative C-level negotiations, and Key Account Management, consistently surpassing quarterly revenue targets.
+          </div>
+        </div>
+
+        <div class="exp-block">
+          <div class="exp-role" data-en="Accounts Executive (Corporate Finance)" data-es="Ejecutivo de Contabilidad y Finanzas">Accounts Executive (Corporate Finance)</div>
+          <div class="exp-meta">Feb 2016 – Nov 2020 &bull; Soorya21 Nextech Pvt. Ltd.</div>
+          <div class="exp-desc"
+               data-en="Managed full-cycle corporate accounting, P&amp;L analysis, Tally ERP reporting, GST/TDS statutory compliance, and cash flow forecasting."
+               data-es="Gestioné la contabilidad corporativa integral, análisis de pérdidas y ganancias (P&amp;L), informes en Tally ERP, cumplimiento fiscal y flujo de caja.">
+            Managed full-cycle corporate accounting, P&amp;L analysis, Tally ERP reporting, GST/TDS statutory compliance, and cash flow forecasting.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card pipeline-stage" data-stage-en="Credentials" data-stage-es="Formación" data-step="3">
+      <div class="card-top">
+        <span class="file-label">03_credentials.py</span>
+        <span class="stage-label">enrich</span>
+        <span class="status-live"><span class="pulse-dot"></span> verified</span>
+      </div>
+      <div class="card-body">
+        <div class="exp-block">
+          <div class="exp-role">Global Executive MBA (60 ECTS &bull; Dual Degree)</div>
+          <div class="exp-meta" data-en="2026 – 2027 &bull; ENAE Business School, Spain (40% Scholarship)" data-es="2026 – 2027 &bull; ENAE Business School, España (Beca 40%)">2026 – 2027 &bull; ENAE Business School, Spain (40% Scholarship)</div>
+          <div class="exp-desc" data-en="International management, corporate strategy, and global finance in Murcia, Spain." data-es="Dirección internacional, estrategia corporativa y finanzas globales en Murcia, España.">International management, corporate strategy, and global finance in Murcia, Spain.</div>
+        </div>
+
+        <div class="exp-block">
+          <div class="exp-role" data-en="Bachelor of Commerce (B.Com)" data-es="Grado en Comercio (B.Com)">Bachelor of Commerce (B.Com)</div>
+          <div class="exp-meta">2012 – 2015 &bull; Chaudhary Charan Singh University (CCSU)</div>
+        </div>
+
+        <div class="exp-block">
+          <div class="exp-role" data-en="13+ Verified Corporate Simulations &amp; Certifications" data-es="+13 Simulaciones Corporativas y Certificaciones">13+ Verified Corporate Simulations &amp; Certifications</div>
+          <div class="exp-meta">Bank of America &bull; BCG &bull; Red Bull &bull; Google &bull; Helsinki AI</div>
+          <div class="exp-desc"
+               data-en="Investment Banking (DCF &amp; M&amp;A), Strategy Consulting, Sales Analytics, Google Analytics (GA4), Google Ads, HubSpot Marketing, Elements of AI, Python (Kaggle)."
+               data-es="Banca de Inversión (DCF y M&amp;A), Consultoría Estratégica, Analítica de Ventas, Google Analytics (GA4), Google Ads, HubSpot, Elements of AI, Python.">
+            Investment Banking (DCF &amp; M&amp;A), Strategy Consulting, Sales Analytics, Google Analytics (GA4), Google Ads, HubSpot Marketing, Elements of AI, Python (Kaggle).
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card pipeline-stage" data-stage-en="Skills &amp; Output" data-stage-es="Habilidades" data-step="4">
+      <div class="card-top">
+        <span class="file-label">04_output_ready.py</span>
+        <span class="stage-label">deploy</span>
+        <span class="status-live"><span class="pulse-dot"></span> live</span>
+      </div>
+      <div class="card-body">
+        <div class="skill-chips">
+          <span class="chip">B2B Sales</span>
+          <span class="chip">Key Accounts</span>
+          <span class="chip">DCF Valuation</span>
+          <span class="chip">M&amp;A Screening</span>
+          <span class="chip">P&amp;L Analysis</span>
+          <span class="chip">Tally ERP</span>
+          <span class="chip">Google Ads &amp; GA4</span>
+          <span class="chip">Python</span>
+          <span class="chip">MS Excel</span>
+          <span class="chip">English (Pro)</span>
+          <span class="chip">Spanish (A1)</span>
+        </div>
+
+        <div style="margin-top:16px; padding-top:14px; border-top:1px solid rgba(255,255,255,0.08); font-size:12.5px; color:#cbd5e1;">
+          📞 <a href="tel:+917988848632" style="color:#38bdf8; text-decoration:none;">+91 79888 48632</a> &nbsp;|&nbsp;
+          ✉️ <a href="mailto:deepaksinghjoon58@gmail.com" style="color:#38bdf8; text-decoration:none;">deepaksinghjoon58@gmail.com</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-note">
+      pipeline_status: 200 OK &bull; Deepak Singh Joon &copy; 2026
+    </div>
+
+  </main>
+
+  <script>
+    var currentLang = 'en';
+    var stagesList = document.querySelectorAll('.pipeline-stage');
+    var activeSection = stagesList[0];
+
+    function refreshHeader() {
+      if (!activeSection) return;
+      var sName = activeSection.getAttribute('data-stage-' + currentLang);
+      var sStep = activeSection.getAttribute('data-step');
+      document.getElementById('procLabel').textContent = (currentLang === 'en') ? 'processing' : 'procesando';
+      document.getElementById('stageName').textContent = sName;
+      document.getElementById('stageStep').textContent = (currentLang === 'en') ? ('stage ' + sStep + ' of 4') : ('etapa ' + sStep + ' de 4');
+    }
+
+    function switchLanguage() {
+      currentLang = (currentLang === 'en') ? 'es' : 'en';
+      document.getElementById('langBtn').textContent = (currentLang === 'en') ? 'ES 🇪🇸' : 'EN 🇬🇧';
+      var items = document.querySelectorAll('[data-en]');
+      for (var i = 0; i < items.length; i++) {
+        items[i].innerHTML = items[i].getAttribute('data-' + currentLang);
+      }
+      refreshHeader();
+    }
+
+    window.addEventListener('scroll', function () {
+      for (var i = 0; i < stagesList.length; i++) {
+        var box = stagesList[i].getBoundingClientRect();
+        if (box.top <= 230) {
+          activeSection = stagesList[i];
+        }
+      }
+      refreshHeader();
+    });
+  </script>
+
+</body>
+</html>
