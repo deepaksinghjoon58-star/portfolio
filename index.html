@@ -8,403 +8,209 @@
   <style>
     :root {
       --bg-dark: #040911;
-      --card-bg: rgba(11, 22, 38, 0.85);
-      --border-glow: rgba(0, 210, 255, 0.22);
+      --card-bg: rgba(11, 22, 38, 0.88);
+      --border-glow: rgba(0, 210, 255, 0.25);
       --cyan: #00d2ff;
-      --green: #10b981;
       --green-bright: #00ff88;
       --text: #f8fafc;
       --muted: #94a3b8;
     }
-
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
     body {
       background-color: var(--bg-dark);
       background-image:
-        radial-gradient(circle at 50% 12%, rgba(0, 210, 255, 0.16) 0%, transparent 45%),
-        radial-gradient(circle at 20% 55%, rgba(0, 255, 136, 0.06) 0%, transparent 40%),
-        radial-gradient(circle at 80% 85%, rgba(0, 210, 255, 0.08) 0%, transparent 40%);
+        radial-gradient(circle at 50% 10%, rgba(0, 210, 255, 0.18) 0%, transparent 45%),
+        radial-gradient(circle at 80% 80%, rgba(0, 255, 136, 0.08) 0%, transparent 40%);
       color: var(--text);
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       min-height: 100vh;
       padding: 14px 14px 70px;
       overflow-x: hidden;
     }
-
-    /* Sticky Top Pipeline Bar (Same as video) */
     .top-nav {
       position: sticky;
       top: 12px;
       z-index: 999;
       max-width: 450px;
       margin: 0 auto 24px;
-      background: rgba(8, 17, 30, 0.88);
+      background: rgba(8, 17, 30, 0.92);
       backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border: 1px solid rgba(0, 210, 255, 0.28);
+      border: 1px solid rgba(0, 210, 255, 0.3);
       border-radius: 999px;
       padding: 8px 14px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6), 0 0 15px rgba(0, 210, 255, 0.12);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
     }
-
-    .nav-left {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      overflow: hidden;
-    }
-
+    .nav-left { display: flex; align-items: center; gap: 10px; overflow: hidden; }
     .node-logo {
-      width: 32px;
-      height: 32px;
-      min-width: 32px;
-      border-radius: 50%;
+      width: 32px; height: 32px; min-width: 32px; border-radius: 50%;
       background: linear-gradient(135deg, #0ea5e9, #2563eb);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 800;
-      font-size: 13px;
-      color: #fff;
-      box-shadow: 0 0 12px rgba(14, 165, 233, 0.5);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 13px; color: #fff;
     }
-
     .pipeline-status {
-      font-family: 'Fira Code', monospace;
-      font-size: 11.5px;
-      color: #cbd5e1;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      font-family: 'Fira Code', monospace; font-size: 11.5px; color: #cbd5e1;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     }
-
-    .pipeline-status .highlight {
-      color: var(--cyan);
-      font-weight: 600;
-    }
-
+    .pipeline-status .highlight { color: var(--cyan); font-weight: 600; }
     .lang-toggle {
-      background: rgba(0, 210, 255, 0.14);
-      border: 1px solid rgba(0, 210, 255, 0.35);
-      color: #fff;
-      font-family: 'Fira Code', monospace;
-      font-size: 11.5px;
-      font-weight: 600;
-      padding: 6px 11px;
-      border-radius: 999px;
-      cursor: pointer;
-      transition: 0.2s;
-      margin-left: 8px;
-      white-space: nowrap;
+      background: rgba(0, 210, 255, 0.16);
+      border: 1px solid rgba(0, 210, 255, 0.4);
+      color: #fff; font-family: 'Fira Code', monospace; font-size: 11.5px; font-weight: 600;
+      padding: 6px 12px; border-radius: 999px; cursor: pointer; margin-left: 8px;
     }
+    .lang-toggle:hover, .lang-toggle:active { background: var(--cyan); color: #040911; }
 
-    .lang-toggle:hover, .lang-toggle:active {
-      background: var(--cyan);
-      color: #040911;
-    }
-
-    /* Animated Data Pipeline Node Header */
     .pipeline-hero {
-      max-width: 450px;
-      margin: 26px auto 12px;
-      text-align: center;
-      position: relative;
-      padding: 18px 0;
+      max-width: 450px; margin: 22px auto 0; text-align: center; position: relative; padding: 16px 0;
     }
-
     .data-line {
-      position: absolute;
-      top: 50%;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, transparent 0%, rgba(0,210,255,0.3) 20%, var(--cyan) 50%, rgba(0,255,136,0.4) 80%, transparent 100%);
-      transform: translateY(-50%);
-      z-index: 1;
+      position: absolute; top: 50%; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--cyan), var(--green-bright), transparent);
+      transform: translateY(-50%); z-index: 1;
     }
-
-    .data-pulse {
-      position: absolute;
-      top: 50%;
-      left: 0;
-      width: 60px;
-      height: 3px;
-      background: linear-gradient(90deg, transparent, #fff, var(--green-bright));
-      transform: translateY(-50%);
-      border-radius: 4px;
-      box-shadow: 0 0 12px var(--cyan);
-      animation: flowPacket 3s linear infinite;
-      z-index: 2;
-    }
-
-    @keyframes flowPacket {
-      0% { left: 5%; opacity: 0; }
-      20% { opacity: 1; }
-      80% { opacity: 1; }
-      100% { left: 85%; opacity: 0; }
-    }
-
     .source-box {
-      position: relative;
-      z-index: 3;
-      display: inline-block;
-      background: rgba(9, 20, 36, 0.95);
-      border: 1px solid rgba(0, 210, 255, 0.5);
-      border-radius: 14px;
-      padding: 10px 22px;
-      box-shadow: 0 0 30px rgba(0, 210, 255, 0.25), inset 0 0 12px rgba(0, 210, 255, 0.1);
+      position: relative; z-index: 3; display: inline-block;
+      background: rgba(9, 20, 36, 0.96); border: 1px solid rgba(0, 210, 255, 0.5);
+      border-radius: 14px; padding: 10px 22px;
+      box-shadow: 0 0 25px rgba(0, 210, 255, 0.25);
     }
+    .source-box .meta { font-family: 'Fira Code', monospace; font-size: 10px; color: var(--cyan); }
+    .source-box .name { font-size: 15px; font-weight: 700; color: #fff; margin: 2px 0; }
+    .source-box .sub { font-size: 10.5px; color: var(--muted); }
+    .v-connector { width: 2px; height: 24px; background: var(--cyan); margin: 0 auto; opacity: 0.4; }
 
-    .source-box .meta {
-      font-family: 'Fira Code', monospace;
-      font-size: 10px;
-      color: var(--cyan);
-      letter-spacing: 0.5px;
-    }
-
-    .source-box .name {
-      font-size: 15px;
-      font-weight: 700;
-      color: #fff;
-      margin: 2px 0;
-    }
-
-    .source-box .sub {
-      font-size: 10.5px;
-      color: var(--muted);
-    }
-
-    /* Vertical Connector */
-    .v-connector {
-      width: 2px;
-      height: 26px;
-      background: linear-gradient(180deg, var(--cyan), rgba(0, 210, 255, 0.15));
-      margin: 0 auto;
-    }
-
-    /* Main Container & Cards */
-    .container {
-      max-width: 450px;
-      margin: 0 auto;
-    }
-
+    .container { max-width: 450px; margin: 0 auto; }
     .card {
       background: var(--card-bg);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
       border: 1px solid var(--border-glow);
-      border-radius: 20px;
-      padding: 20px;
+      border-radius: 20px; padding: 20px;
       box-shadow: 0 14px 35px rgba(0, 0, 0, 0.55);
     }
-
     .card-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-bottom: 12px;
-      margin-bottom: 18px;
+      display: flex; justify-content: space-between; align-items: center;
+      padding-bottom: 12px; margin-bottom: 18px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      font-family: 'Fira Code', monospace;
-      font-size: 12px;
+      font-family: 'Fira Code', monospace; font-size: 12px;
     }
-
     .file-label { color: #cbd5e1; }
     .stage-label { color: #64748b; font-size: 11px; }
-
-    .status-live {
-      color: var(--green-bright);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 11.5px;
-    }
-
+    .status-live { color: var(--green-bright); display: flex; align-items: center; gap: 6px; font-size: 11.5px; }
     .pulse-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--green-bright);
-      box-shadow: 0 0 8px var(--green-bright);
-      animation: blink 1.6s infinite;
+      width: 8px; height: 8px; border-radius: 50%; background: var(--green-bright);
+      box-shadow: 0 0 8px var(--green-bright); animation: blink 1.6s infinite;
     }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
 
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.35; }
-    }
-
-    /* Profile Hero inside Card 1 (Exact match to video) */
-    .profile-row {
-      display: flex;
-      gap: 16px;
-      align-items: center;
-      margin-bottom: 18px;
-    }
-
+    .profile-row { display: flex; gap: 16px; align-items: center; margin-bottom: 18px; }
     .avatar-rect {
-      width: 102px;
-      height: 126px;
-      min-width: 102px;
-      border-radius: 14px;
-      object-fit: cover;
-      object-position: center 15%;
-      border: 1px solid rgba(0, 210, 255, 0.35);
-      background: #09111e;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+      width: 102px; height: 126px; min-width: 102px; border-radius: 14px;
+      object-fit: cover; object-position: center 15%;
+      border: 1px solid rgba(0, 210, 255, 0.35); background: #09111e;
     }
-
-    .profile-details h1 {
-      font-size: 28px;
-      line-height: 1.12;
-      font-weight: 800;
-      letter-spacing: -0.3px;
-      margin-bottom: 10px;
-    }
-
+    .profile-details h1 { font-size: 27px; line-height: 1.12; font-weight: 800; margin-bottom: 10px; }
     .pill-blue {
-      display: inline-block;
-      background: rgba(14, 165, 233, 0.16);
-      border: 1px solid rgba(56, 189, 248, 0.35);
-      color: #38bdf8;
-      font-size: 11.5px;
-      font-weight: 600;
-      padding: 5px 11px;
-      border-radius: 8px;
-      margin-bottom: 6px;
+      display: inline-block; background: rgba(14, 165, 233, 0.16);
+      border: 1px solid rgba(56, 189, 248, 0.35); color: #38bdf8;
+      font-size: 11.5px; font-weight: 600; padding: 5px 11px; border-radius: 8px; margin-bottom: 6px;
     }
-
     .pill-teal {
-      display: inline-block;
-      background: rgba(16, 185, 129, 0.14);
-      border: 1px solid rgba(52, 211, 153, 0.35);
-      color: #34d399;
-      font-size: 11.5px;
-      font-weight: 600;
-      padding: 5px 11px;
-      border-radius: 8px;
-      line-height: 1.35;
+      display: inline-block; background: rgba(16, 185, 129, 0.14);
+      border: 1px solid rgba(52, 211, 153, 0.35); color: #34d399;
+      font-size: 11.5px; font-weight: 600; padding: 5px 11px; border-radius: 8px; line-height: 1.35;
     }
-
-    .loc-line {
-      font-size: 12px;
-      color: var(--muted);
-      margin-top: 8px;
-    }
+    .loc-line { font-size: 12px; color: var(--muted); margin-top: 8px; }
 
     .edu-badges {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin: 12px 0 16px;
-      padding: 8px 12px;
-      background: rgba(255, 255, 255, 0.03);
-      border-radius: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      font-size: 12px;
-      color: #cbd5e1;
+      display: flex; align-items: center; gap: 8px; margin: 12px 0 16px; padding: 8px 12px;
+      background: rgba(255, 255, 255, 0.03); border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.06); font-size: 12px; color: #cbd5e1;
     }
-
     .badge-circle {
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      background: rgba(0, 210, 255, 0.18);
-      border: 1px solid rgba(0, 210, 255, 0.4);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--cyan);
+      width: 24px; height: 24px; min-width: 24px; border-radius: 50%;
+      background: rgba(0, 210, 255, 0.18); border: 1px solid rgba(0, 210, 255, 0.4);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px; font-weight: 700; color: var(--cyan);
     }
 
-    .bio-p {
-      font-size: 14px;
-      line-height: 1.62;
-      color: #e2e8f0;
-      margin-bottom: 14px;
-    }
+    .bio-p { font-size: 14px; line-height: 1.62; color: #e2e8f0; margin-bottom: 14px; }
+    .hint-p { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; line-height: 1.5; }
 
-    .hint-p {
-      font-size: 12.5px;
-      color: var(--muted);
-      margin-bottom: 18px;
-      line-height: 1.5;
-    }
-
-    /* 4 Bottom Action Tiles (Exact match to video) */
-    .action-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-    }
-
+    .action-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
     .action-tile {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 14px;
-      padding: 12px 4px;
-      text-align: center;
-      text-decoration: none;
-      color: #e2e8f0;
-      font-size: 11.5px;
-      font-weight: 500;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-      transition: 0.2s;
+      background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 14px; padding: 12px 4px; text-align: center; text-decoration: none;
+      color: #e2e8f0; font-size: 11.5px; font-weight: 500;
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
     }
+    .action-tile:hover, .action-tile:active { border-color: var(--cyan); background: rgba(0, 210, 255, 0.12); }
+    .action-tile svg { width: 20px; height: 20px; stroke: #cbd5e1; }
 
-    .action-tile:hover, .action-tile:active {
-      border-color: var(--cyan);
-      background: rgba(0, 210, 255, 0.12);
-      transform: translateY(-2px);
-    }
-
-    .action-tile svg {
-      width: 20px;
-      height: 20px;
-      stroke: #cbd5e1;
-    }
-
-    /* Experience & Credentials Nodes */
     .exp-block {
-      background: rgba(255, 255, 255, 0.025);
-      border: 1px solid rgba(255, 255, 255, 0.07);
-      border-radius: 14px;
-      padding: 15px;
-      margin-bottom: 12px;
+      background: rgba(255, 255, 255, 0.025); border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 14px; padding: 15px; margin-bottom: 12px;
     }
-
     .exp-block:last-child { margin-bottom: 0; }
+    .exp-role { font-size: 15.5px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+    .exp-meta { font-family: 'Fira Code', monospace; font-size: 11px; color: var(--cyan); margin-bottom: 8px; }
+    .exp-desc { font-size: 13px; color: #cbd5e1; line-height: 1.55; }
 
-    .exp-role {
-      font-size: 15.5px;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 4px;
+    .skill-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip {
+      font-family: 'Fira Code', monospace; font-size: 11.5px;
+      background: rgba(0, 210, 255, 0.09); border: 1px solid rgba(0, 210, 255, 0.25);
+      color: #e0f2fe; padding: 6px 11px; border-radius: 8px;
     }
-
-    .exp-meta {
-      font-family: 'Fira Code', monospace;
-      font-size: 11px;
-      color: var(--cyan);
-      margin-bottom: 8px;
+    .footer-note {
+      text-align: center; font-family: 'Fira Code', monospace;
+      font-size: 11px; color: #64748b; margin-top: 28px;
     }
+  </style>
+</head>
+<body>
 
-    .exp-desc {
-      font-size: 13px;
-      color: #cbd5e1;
-      line-height: 1.55;
-    }
+  <nav class="top-nav">
+    <div class="nav-left">
+      <div class="node-logo">DJ</div>
+      <div class="pipeline-status">
+        <span id="procLabel">processing</span> &rarr; <span class="highlight" id="stageName">About Me</span> &bull; <span id="stageStep">stage 1 of 4</span>
+      </div>
+    </div>
+    <button type="button" class="lang-toggle" id="langBtn" onclick="switchLanguage()">ES 🇪🇸</button>
+  </nav>
 
-    .skill-chips {
-      display: flex;
-      flex-wrap: wrap;
-    
+  <div class="pipeline-hero">
+    <div class="data-line"></div>
+    <div class="source-box">
+      <div class="meta">00 &bull; source</div>
+      <div class="name">Deepak Singh Joon</div>
+      <div class="sub" data-en="Global Executive MBA &bull; B2B &amp; Finance" data-es="Global Executive MBA &bull; B2B y Finanzas">Global Executive MBA &bull; B2B &amp; Finance</div>
+    </div>
+  </div>
+
+  <div class="v-connector"></div>
+
+  <main class="container">
+
+    <section class="card pipeline-stage" data-stage-en="About Me" data-stage-es="Sobre mí" data-step="1">
+      <div class="card-top">
+        <span class="file-label">deepak_joon.py</span>
+        <span class="stage-label">source</span>
+        <span class="status-live"><span class="pulse-dot"></span> <span data-en="available" data-es="disponible">available</span></span>
+      </div>
+
+      <div class="profile-row">
+        <img src="profile.jpg" alt="Deepak Singh Joon" class="avatar-rect" />
+        <div class="profile-details">
+          <h1>Deepak<br>Singh Joon</h1>
+          <div class="pill-blue" data-en="B2B Growth &amp; Finance" data-es="Crecimiento B2B y Finanzas">B2B Growth &amp; Finance</div><br>
+          <div class="pill-teal" data-en="Global Executive MBA &bull; ENAE Spain" data-es="Global Executive MBA &bull; ENAE España">Global Executive MBA &bull; ENAE Spain</div>
+          <div class="loc-line" data-en="Murcia, Spain (Relocating) &bull; Open to Work" data-es="Murcia, España (Traslado) &bull; Disponible">Murcia, Spain (Relocating) &bull; Open to Work</div>
+        </div>
+      </div>
+
+      <div class="edu-badges">
+        <span class="badge-circle">EN</span>
+        
