@@ -3,259 +3,408 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Deepak Singh Joon | Global Executive MBA & B2B Growth Leader</title>
+  <title>Deepak Singh Joon • Global Executive MBA &amp; B2B Growth</title>
+  <link href="https://googleapis.com" rel="stylesheet">
   <style>
     :root {
-      --primary: #0f172a;
-      --accent: #991b1b;
-      --accent-hover: #7f1d1d;
-      --bg: #f8fafc;
-      --card: #ffffff;
-      --text: #1e293b;
-      --muted: #64748b;
-      --border: #e2e8f0;
+      --bg-dark: #040911;
+      --card-bg: rgba(11, 22, 38, 0.85);
+      --border-glow: rgba(0, 210, 255, 0.22);
+      --cyan: #00d2ff;
+      --green: #10b981;
+      --green-bright: #00ff88;
+      --text: #f8fafc;
+      --muted: #94a3b8;
     }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background: var(--bg);
+      background-color: var(--bg-dark);
+      background-image:
+        radial-gradient(circle at 50% 12%, rgba(0, 210, 255, 0.16) 0%, transparent 45%),
+        radial-gradient(circle at 20% 55%, rgba(0, 255, 136, 0.06) 0%, transparent 40%),
+        radial-gradient(circle at 80% 85%, rgba(0, 210, 255, 0.08) 0%, transparent 40%);
       color: var(--text);
-      line-height: 1.6;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      min-height: 100vh;
+      padding: 14px 14px 70px;
+      overflow-x: hidden;
     }
-    header {
-      background: linear-gradient(135deg, #090d16 0%, #1e293b 100%);
-      color: #fff;
-      padding: 24px 20px 60px;
-      text-align: center;
-      position: relative;
-    }
-    .top-bar {
-      max-width: 960px;
+
+    /* Sticky Top Pipeline Bar (Same as video) */
+    .top-nav {
+      position: sticky;
+      top: 12px;
+      z-index: 999;
+      max-width: 450px;
       margin: 0 auto 24px;
-      display: flex;
-      justify-content: flex-end;
-    }
-    .lang-btn {
-      background: rgba(255,255,255,0.12);
-      color: #fff;
-      border: 1px solid rgba(255,255,255,0.3);
-      padding: 8px 16px;
+      background: rgba(8, 17, 30, 0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(0, 210, 255, 0.28);
       border-radius: 999px;
-      font-size: 0.85rem;
+      padding: 8px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6), 0 0 15px rgba(0, 210, 255, 0.12);
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      overflow: hidden;
+    }
+
+    .node-logo {
+      width: 32px;
+      height: 32px;
+      min-width: 32px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #0ea5e9, #2563eb);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 13px;
+      color: #fff;
+      box-shadow: 0 0 12px rgba(14, 165, 233, 0.5);
+    }
+
+    .pipeline-status {
+      font-family: 'Fira Code', monospace;
+      font-size: 11.5px;
+      color: #cbd5e1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .pipeline-status .highlight {
+      color: var(--cyan);
       font-weight: 600;
+    }
+
+    .lang-toggle {
+      background: rgba(0, 210, 255, 0.14);
+      border: 1px solid rgba(0, 210, 255, 0.35);
+      color: #fff;
+      font-family: 'Fira Code', monospace;
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 6px 11px;
+      border-radius: 999px;
       cursor: pointer;
       transition: 0.2s;
+      margin-left: 8px;
+      white-space: nowrap;
     }
-    .lang-btn:hover {
-      background: var(--accent);
-      border-color: var(--accent);
-    }
-    .profile-pic {
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
-      object-fit: cover;
-      object-position: center 20%;
-      border: 4px solid rgba(255,255,255,0.2);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
-      margin-bottom: 18px;
-      background: #000;
-    }
-    .badge {
-      display: inline-block;
-      background: rgba(153, 27, 27, 0.35);
-      border: 1px solid rgba(248, 113, 113, 0.4);
-      padding: 6px 14px;
-      border-radius: 999px;
-      font-size: 0.85rem;
-      margin-bottom: 14px;
-      letter-spacing: 0.4px;
-    }
-    header h1 {
-      font-size: 2.4rem;
-      font-weight: 800;
-      letter-spacing: 1px;
-      margin-bottom: 10px;
-    }
-    header p.subtitle {
-      font-size: 1.08rem;
-      color: #cbd5e1;
-      max-width: 720px;
-      margin: 0 auto 14px;
-    }
-    .location {
-      font-size: 0.95rem;
-      color: #94a3b8;
-      margin-bottom: 28px;
-    }
-    .btn-group {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 12px;
-    }
-    .btn {
-      text-decoration: none;
-      padding: 12px 22px;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 0.95rem;
-      transition: 0.2s;
-      display: inline-block;
-    }
-    .btn-primary {
-      background: var(--accent);
-      color: #fff;
-    }
-    .btn-primary:hover { background: var(--accent-hover); }
-    .btn-outline {
-      background: rgba(255,255,255,0.1);
-      color: #fff;
-      border: 1px solid rgba(255,255,255,0.3);
-    }
-    .btn-outline:hover { background: rgba(255,255,255,0.2); }
 
-    .container {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 40px 20px;
+    .lang-toggle:hover, .lang-toggle:active {
+      background: var(--cyan);
+      color: #040911;
     }
-    section {
-      margin-bottom: 40px;
+
+    /* Animated Data Pipeline Node Header */
+    .pipeline-hero {
+      max-width: 450px;
+      margin: 26px auto 12px;
+      text-align: center;
+      position: relative;
+      padding: 18px 0;
     }
-    h2 {
-      font-size: 1.35rem;
-      color: var(--primary);
-      border-left: 4px solid var(--accent);
-      padding-left: 12px;
-      margin-bottom: 20px;
-      text-transform: uppercase;
+
+    .data-line {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent 0%, rgba(0,210,255,0.3) 20%, var(--cyan) 50%, rgba(0,255,136,0.4) 80%, transparent 100%);
+      transform: translateY(-50%);
+      z-index: 1;
+    }
+
+    .data-pulse {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #fff, var(--green-bright));
+      transform: translateY(-50%);
+      border-radius: 4px;
+      box-shadow: 0 0 12px var(--cyan);
+      animation: flowPacket 3s linear infinite;
+      z-index: 2;
+    }
+
+    @keyframes flowPacket {
+      0% { left: 5%; opacity: 0; }
+      20% { opacity: 1; }
+      80% { opacity: 1; }
+      100% { left: 85%; opacity: 0; }
+    }
+
+    .source-box {
+      position: relative;
+      z-index: 3;
+      display: inline-block;
+      background: rgba(9, 20, 36, 0.95);
+      border: 1px solid rgba(0, 210, 255, 0.5);
+      border-radius: 14px;
+      padding: 10px 22px;
+      box-shadow: 0 0 30px rgba(0, 210, 255, 0.25), inset 0 0 12px rgba(0, 210, 255, 0.1);
+    }
+
+    .source-box .meta {
+      font-family: 'Fira Code', monospace;
+      font-size: 10px;
+      color: var(--cyan);
       letter-spacing: 0.5px;
     }
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 24px;
-      margin-bottom: 16px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+
+    .source-box .name {
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+      margin: 2px 0;
     }
-    .card-header {
+
+    .source-box .sub {
+      font-size: 10.5px;
+      color: var(--muted);
+    }
+
+    /* Vertical Connector */
+    .v-connector {
+      width: 2px;
+      height: 26px;
+      background: linear-gradient(180deg, var(--cyan), rgba(0, 210, 255, 0.15));
+      margin: 0 auto;
+    }
+
+    /* Main Container & Cards */
+    .container {
+      max-width: 450px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border-glow);
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 14px 35px rgba(0, 0, 0, 0.55);
+    }
+
+    .card-top {
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 8px;
+      align-items: center;
+      padding-bottom: 12px;
+      margin-bottom: 18px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      font-family: 'Fira Code', monospace;
+      font-size: 12px;
     }
-    .card-title {
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: var(--primary);
+
+    .file-label { color: #cbd5e1; }
+    .stage-label { color: #64748b; font-size: 11px; }
+
+    .status-live {
+      color: var(--green-bright);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11.5px;
     }
-    .card-date {
-      font-size: 0.88rem;
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green-bright);
+      box-shadow: 0 0 8px var(--green-bright);
+      animation: blink 1.6s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.35; }
+    }
+
+    /* Profile Hero inside Card 1 (Exact match to video) */
+    .profile-row {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .avatar-rect {
+      width: 102px;
+      height: 126px;
+      min-width: 102px;
+      border-radius: 14px;
+      object-fit: cover;
+      object-position: center 15%;
+      border: 1px solid rgba(0, 210, 255, 0.35);
+      background: #09111e;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+    }
+
+    .profile-details h1 {
+      font-size: 28px;
+      line-height: 1.12;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+      margin-bottom: 10px;
+    }
+
+    .pill-blue {
+      display: inline-block;
+      background: rgba(14, 165, 233, 0.16);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      color: #38bdf8;
+      font-size: 11.5px;
       font-weight: 600;
-      color: var(--accent);
-      background: #fef2f2;
-      padding: 4px 10px;
-      border-radius: 6px;
+      padding: 5px 11px;
+      border-radius: 8px;
+      margin-bottom: 6px;
     }
-    .card-sub {
-      font-size: 0.95rem;
+
+    .pill-teal {
+      display: inline-block;
+      background: rgba(16, 185, 129, 0.14);
+      border: 1px solid rgba(52, 211, 153, 0.35);
+      color: #34d399;
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 5px 11px;
+      border-radius: 8px;
+      line-height: 1.35;
+    }
+
+    .loc-line {
+      font-size: 12px;
       color: var(--muted);
+      margin-top: 8px;
+    }
+
+    .edu-badges {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 12px 0 16px;
+      padding: 8px 12px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 12px;
+      color: #cbd5e1;
+    }
+
+    .badge-circle {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: rgba(0, 210, 255, 0.18);
+      border: 1px solid rgba(0, 210, 255, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--cyan);
+    }
+
+    .bio-p {
+      font-size: 14px;
+      line-height: 1.62;
+      color: #e2e8f0;
+      margin-bottom: 14px;
+    }
+
+    .hint-p {
+      font-size: 12.5px;
+      color: var(--muted);
+      margin-bottom: 18px;
+      line-height: 1.5;
+    }
+
+    /* 4 Bottom Action Tiles (Exact match to video) */
+    .action-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    .action-tile {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 14px;
+      padding: 12px 4px;
+      text-align: center;
+      text-decoration: none;
+      color: #e2e8f0;
+      font-size: 11.5px;
       font-weight: 500;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      transition: 0.2s;
+    }
+
+    .action-tile:hover, .action-tile:active {
+      border-color: var(--cyan);
+      background: rgba(0, 210, 255, 0.12);
+      transform: translateY(-2px);
+    }
+
+    .action-tile svg {
+      width: 20px;
+      height: 20px;
+      stroke: #cbd5e1;
+    }
+
+    /* Experience & Credentials Nodes */
+    .exp-block {
+      background: rgba(255, 255, 255, 0.025);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 14px;
+      padding: 15px;
       margin-bottom: 12px;
     }
-    ul {
-      padding-left: 20px;
-      color: var(--text);
-    }
-    ul li { margin-bottom: 8px; }
 
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 16px;
+    .exp-block:last-child { margin-bottom: 0; }
+
+    .exp-role {
+      font-size: 15.5px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 4px;
     }
-    .tags {
+
+    .exp-meta {
+      font-family: 'Fira Code', monospace;
+      font-size: 11px;
+      color: var(--cyan);
+      margin-bottom: 8px;
+    }
+
+    .exp-desc {
+      font-size: 13px;
+      color: #cbd5e1;
+      line-height: 1.55;
+    }
+
+    .skill-chips {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 10px;
-    }
-    .tag {
-      background: #f1f5f9;
-      color: #334155;
-      padding: 6px 12px;
-      border-radius: 6px;
-      font-size: 0.85rem;
-      font-weight: 500;
-      border: 1px solid #e2e8f0;
-    }
-    footer {
-      background: var(--primary);
-      color: #94a3b8;
-      text-align: center;
-      padding: 36px 20px;
-      margin-top: 40px;
-    }
-    footer a { color: #fff; text-decoration: none; margin: 0 10px; }
-    footer a:hover { text-decoration: underline; }
-    @media (max-width: 600px) {
-      header h1 { font-size: 1.85rem; }
-      .btn { width: 100%; text-align: center; }
-    }
-  </style>
-</head>
-<body>
-
-  <header>
-    <div class="top-bar">
-      <button class="lang-btn" onclick="toggleLang()" id="langBtn">Español 🇪🇸</button>
-    </div>
-
-    <img src="profile.jpg" alt="Deepak Singh Joon" class="profile-pic" />
-    <br />
-    <div class="badge" data-en="Incoming Global Executive MBA @ ENAE Business School, Spain (40% Merit Scholarship)" data-es="Próximo Global Executive MBA @ ENAE Business School, España (Beca de Mérito del 40%)">
-      Incoming Global Executive MBA @ ENAE Business School, Spain (40% Merit Scholarship)
-    </div>
-    <h1>DEEPAK SINGH JOON</h1>
-    <p class="subtitle" data-en="B2B Business Development, Key Account Management & Corporate Finance Professional (8+ Years Experience)" data-es="Profesional de Desarrollo de Negocio B2B, Gestión de Cuentas Clave y Finanzas Corporativas (+8 Años de Experiencia)">
-      B2B Business Development, Key Account Management &amp; Corporate Finance Professional (8+ Years Experience)
-    </p>
-    <p class="location" data-en="New Delhi / Haryana, India &rarr; Relocating to Murcia, Spain" data-es="Nueva Delhi / Haryana, India &rarr; Traslado a Murcia, España">
-      New Delhi / Haryana, India &rarr; Relocating to Murcia, Spain
-    </p>
-    <div class="btn-group">
-      <a href="Deepak_Singh_Joon_CV.pdf" download class="btn btn-primary" data-en="Download Full CV (PDF)" data-es="Descargar CV Completo (PDF)">Download Full CV (PDF)</a>
-      <a href="https://linkedin.com" target="_blank" class="btn btn-outline">LinkedIn</a>
-      <a href="https://github.com" target="_blank" class="btn btn-outline">GitHub</a>
-      <a href="mailto:deepaksinghjoon58@gmail.com" class="btn btn-outline" data-en="Email Me" data-es="Enviar Correo">Email Me</a>
-      <a href="tel:+917988848632" class="btn btn-outline">+91 79888 48632</a>
-    </div>
-  </header>
-
-  <div class="container">
-
-    <section>
-      <h2 data-en="Executive Summary" data-es="Resumen Ejecutivo">Executive Summary</h2>
-      <div class="card">
-        <p data-en="Results-driven Business Development and Finance professional with 8+ years of cross-functional experience bridging B2B revenue expansion, key account management, and corporate financial discipline. Admitted to the Global Executive MBA (60 ECTS, Dual Degree) at ENAE Business School (Spain) with a 40% International Merit Scholarship. Equipped with practical exposure to M&A financial modeling (Bank of America), strategy consulting (BCG), and digital growth analytics (Google Ads, GA4, Python)."
-           data-es="Profesional orientado a resultados en Desarrollo de Negocio y Finanzas con más de 8 años de experiencia multifuncional uniendo expansión de ingresos B2B, gestión de cuentas clave y disciplina financiera corporativa. Admitido en el Global Executive MBA (60 ECTS, Doble Titulación) en ENAE Business School (España) con una Beca Internacional al Mérito del 40%. Con experiencia práctica en modelización financiera de M&A (Bank of America), consultoría estratégica (BCG) y analítica de crecimiento digital (Google Ads, GA4, Python).">
-          Results-driven Business Development and Finance professional with 8+ years of cross-functional experience bridging B2B revenue expansion, key account management, and corporate financial discipline. Admitted to the Global Executive MBA (60 ECTS, Dual Degree) at ENAE Business School (Spain) with a 40% International Merit Scholarship. Equipped with practical exposure to M&amp;A financial modeling (Bank of America), strategy consulting (BCG), and digital growth analytics (Google Ads, GA4, Python).
-        </p>
-      </div>
-    </section>
-
-    <section>
-      <h2 data-en="Professional Experience" data-es="Experiencia Profesional">Professional Experience</h2>
-
-      <div class="card">
-        <div class="card-header">
-          <div class="card-title" data-en="Business Development Executive" data-es="Ejecutivo de Desarrollo de Negocio (B2B)">Business Development Executive</div>
-          <div class="card-date" data-en="March 2021 – June 2025" data-es="Marzo 2021 – Junio 2025">March 2021 – June 2025</div>
-        </div>
-        <div class="card-sub">Suchai Innovation Private Limited — Gurugram, Haryana, India</div>
-        <ul>
-          <li data-en="Spearheaded B2B client acquisition pipelines and commercial expansion strategies, consistently surpassing quarterly revenue targets." data-es="Lideré la captación de clientes B2B y estrategias de expansión comercial, superando constantemente los objetivos trimestrales de ingresos.">Spearheaded B2B client acquisition pipelines and commercial expansion strategies, consistently surpassing quarterly revenue targets.</li>
+    
